@@ -7,6 +7,6 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/MrPackman_1.0"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/MsPackmanEngine"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/MsPackmanEngine"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
