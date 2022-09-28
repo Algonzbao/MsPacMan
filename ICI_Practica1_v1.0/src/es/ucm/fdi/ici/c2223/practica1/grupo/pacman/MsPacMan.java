@@ -50,6 +50,8 @@ public final class MsPacMan extends PacmanController {
 		private void calcular(Game game) {
 			Maze maze = game.getCurrentMaze();
 			// Si un fantasma ha tomado una decision, anotarla
+			//Funciona nuestro github?
+			
 			final int numLayer = 10;
 			int maxScore = 0;
 			while (continuar) {
@@ -60,7 +62,7 @@ public final class MsPacMan extends PacmanController {
 			// Avanzar en el arbol de decisiones
 			
 			
-			/* Hallar el corrido de distancia mínima entre el nodo siguiente a cada fantasma y el nodo siguiente
+			/* Hallar el corrido de distancia mï¿½nima entre el nodo siguiente a cada fantasma y el nodo siguiente
 			 * a pacman. Desplegar las opciones de cambio de ruta desde pacman, y ver el recorrido minimo desde los fantasma
 			 * asociar a cada nodo un tiempo de pase (de pacman y cada fantasma) y anotar una lista para cada ciclo independiente
 			 * un ciclo sera dependiente si es la conbinacion de varios ciclos.
@@ -146,14 +148,14 @@ public final class MsPacMan extends PacmanController {
 		try {
 			Thread.sleep(TIME_LIMIT * 1000);
 		} catch (InterruptedException e) {
-			System.err.println("Se ha lanzado una excepción de interrupción");
+			System.err.println("Se ha lanzado una excepciï¿½n de interrupciï¿½n");
 		}
 		MOVE respuesta = esclavo.getRespuesta();
 		long fin = System.currentTimeMillis();
 		double tiempo = (double) ((fin - inicio) / 1000);
 		System.out.println("Tiempo de inicio: " + inicio);
 		System.out.println("Tiempo de fin: " + fin);
-		System.out.println("Duración: " + tiempo +" segundos");
+		System.out.println("Duraciï¿½n: " + tiempo +" segundos");
 		return respuesta;
 	}
 }
