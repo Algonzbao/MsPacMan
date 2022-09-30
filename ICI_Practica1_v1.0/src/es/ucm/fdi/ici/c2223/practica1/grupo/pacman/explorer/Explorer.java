@@ -3,6 +3,8 @@ package es.ucm.fdi.ici.c2223.practica1.grupo.pacman.explorer;
 import java.util.HashMap;
 import java.util.Map;
 
+import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.state.Camino;
+
 public class Explorer {
 
 	public class ArbolExploracion {

@@ -1,4 +1,4 @@
-package es.ucm.fdi.ici.c2223.practica1.grupo.pacman.explorer;
+package es.ucm.fdi.ici.c2223.practica1.grupo.pacman.state;
 
 public class CaminoIdentifier {
 
