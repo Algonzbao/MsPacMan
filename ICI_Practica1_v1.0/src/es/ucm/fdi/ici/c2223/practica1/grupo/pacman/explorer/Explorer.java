@@ -5,28 +5,68 @@ import java.util.Map;
 
 public class Explorer {
 
-	
-	
-	private class ArbolExploracion {
+	public class ArbolExploracion {
+		
+		private Camino raiz;
 		private ArbolExploracion left;
 		private ArbolExploracion center;
 		private ArbolExploracion right;
 		
+		private ArbolExploracion(Camino raiz) {
+			this.raiz = raiz;
+		}
+		private void setLeft(ArbolExploracion ae) {
+			this.left = ae;
+		}
+		private void setCenter(ArbolExploracion ae) {
+			this.center = ae;
+		}
+		private void setRight(ArbolExploracion ae) {
+			this.right = ae;
+		}
+		public Camino getRaiz() {
+			return raiz;
+		}
+		public ArbolExploracion getLeft() {
+			return left;
+		}
+		public ArbolExploracion getCenter() {
+			return center;
+		}
+		public ArbolExploracion getRight() {
+			return right;
+		}
+		
 	}
 	
-	private Map<Camino, Boolean> camMap;
-	private Integer exploredCaminos;
+	private Map<Integer, Boolean> camMap;
 	
 	Explorer() {
-		this.exploredCaminos = 0;
-		camMap = new HashMap<Camino, Boolean>();
+		camMap = new HashMap<Integer, Boolean>();
 	}
 	
-	void explorar(Camino cam) {
-		for (Camino c : cam.nextCaminos()) {
-			if (isExplored(cam))
-				explorar(c);
+	ArbolExploracion explorar(Camino cam) {
+		ArbolExploracion ae = new ArbolExploracion(cam);
+		ArbolExploracion act;
+		Integer count = 0;
+		for (Camino ca : cam.nextCaminos()) {
+			count++;
+			if (!isExplored(ca)) {
+				camMap.put(cam.getIdCamino(), true);
+				act = explorar(ca);
+				switch (count) {
+				case 1 :
+					ae.setLeft(act);
+					break;
+				case 2 :
+					ae.setCenter(act);
+					break;
+				default :
+					ae.setRight(act);
+				}
+			}
 		}
+		return ae;
 	}
 	
 	/*
@@ -36,6 +76,6 @@ public class Explorer {
 	*/
 	
 	private boolean isExplored(Camino cam) {
-		if (camMap.)
+		return camMap.containsKey(cam.getIdCamino());
 	}
 }
