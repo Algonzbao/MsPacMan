@@ -160,39 +160,5 @@ public final class MsPacMan extends PacmanController {
 		return respuesta;
 	}
 	
-	public String getGameState(Game game) {
-		  StringBuilder sb = new StringBuilder();
-
-	        sb.append(getMaze(game) + "," + getPMPosition(game) + "," + getPowerPills(game.getCurrentMaze()) + "," 
-	        + getPills(game.getCurrentMaze()) + "," + getGhostsPosition(game) + ",");
-		//Necesito estado del maze
-		//Posicion de las pills
-		//Posicion de PacMan
-		//Posicion de los fantasmas
-	       return sb.toString();
-	}
-	public final Maze getMaze(Game game) {
-		return game.getCurrentMaze();
-		
-	}
-	public String getPills(Maze maze) {
-		return maze.pillIndices.toString();
-		
-	}
-	public String getPowerPills(Maze maze) {
-		return maze.powerPillIndices.toString();
-	}
-	public Integer getPMPosition(Game game) {
-		return game.getPacmanCurrentNodeIndex();
-	}
-	public String getGhostsPosition(Game game) {
-		StringBuilder sb = new StringBuilder();
-		Ghost ghosts game.get;
-		for (Ghost ghost : ghosts.values()) {
-            sb.append(ghost.currentNodeIndex + ",");
-        }
-		return sb.toString();
-	}
-	
 }
 
