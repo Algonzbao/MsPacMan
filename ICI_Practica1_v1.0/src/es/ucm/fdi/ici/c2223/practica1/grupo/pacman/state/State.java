@@ -1,12 +1,13 @@
 package es.ucm.fdi.ici.c2223.practica1.grupo.pacman.state;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.explorer.Camino;
 import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.util.Pair;
+import pacman.game.Constants.GHOST;
 import pacman.game.Game;
 import pacman.game.internal.Ghost;
 import pacman.game.internal.Maze;
@@ -19,30 +20,29 @@ public class State {
 	private final List<Camino> maze;
 	
 	public final Maze getMaze(Game game) {
-		maze = new ArrayList<>();
-		return game.getCurrentMaze();
-		
+		//this.maze = game.getCurrentMaze();
 	}
-	public void getPills(Game game, Maze maze) {
-		for(Integer i = 0;i < game.getNumberOfActivePills(); i++) {
-		Integer eachPillPos = game.getPillIndex(i);
-		pillPos.add(eachPillPos);
+	public void getPills(Game game, Camino camino) {
+		int[] data = game.getActivePillsIndices();
+		for(int i = 0; i < game.getActivePillsIndices().length; i++) {
+			pillPos.put(camino, data[i]);
 		}
-		
 	}
-	public void getPowerPills(Game game, Maze maze) {
-		for(Integer i = 0;i < game.getNumberOfActivePowerPills(); i++) {
-		Integer eachPowerPillPos = game.getPowerPillIndex(i);
-		powerPillPos.add(eachPowerPillPos);
+	public void getPowerPills(Game game, Camino camino) {
+		int[] data = game.getActivePowerPillsIndices();
+		for(int i = 0; i < game.getActivePowerPillsIndices().length; i++) {
+			powerPillPos.setFirst(camino);
+			powerPillPos.setSecond(data[i]);
 		}
 	}
 	public void getPMPosition(Game game) {
 		pacmanPos = game.getPacmanCurrentNodeIndex();
 	}
+	
 	public void getGhostsPosition(Game game) {
-		for(Integer i = 0;i < game.getnu(); i++) {
-			Integer eachPowerPillPos = game.getPowerPillIndex(i);
-			powerPillPos.add(eachPowerPillPos);
-			}
+		ArrayList<Integer> eachGhostPos = new ArrayList<>();
+		for (GHOST ghostType : GHOST.values()) {
+			eachGhostPos.add(game.getGhostCurrentNodeIndex(ghostType));
+		}
 	}
 }
