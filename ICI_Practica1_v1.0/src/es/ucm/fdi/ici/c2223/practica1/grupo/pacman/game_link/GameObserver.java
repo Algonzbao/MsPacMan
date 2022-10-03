@@ -10,6 +10,7 @@ import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.state.Camino;
 import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.state.State;
 import pacman.game.Game;
 import pacman.game.Constants.GHOST;
+import pacman.game.internal.Maze;
 
 public class GameObserver {
 
@@ -20,6 +21,7 @@ public class GameObserver {
 	}
 	
 	public State getActualState() {
+		Maze maze = game.getCurrentMaze();
 		// donde se guardan los caminos?
 		private final List<Camino> maze;
 		public void getPills(Game game, Camino camino) {
@@ -48,7 +50,9 @@ public class GameObserver {
 		// TODO Falta de implementar.
 		return null;
 	}
-
+	
+	/* Se deben almacenar la lista de transiciones con el fin de eliminar las líneas temporales
+	 * alternativas que no han sucedido */
 	public List<Map<Agente, Action>> inferTransitions(final State state) {
 		// TODO Falta de implementar.
 		return null;

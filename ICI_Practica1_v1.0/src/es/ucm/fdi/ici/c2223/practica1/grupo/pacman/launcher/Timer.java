@@ -1,7 +1,5 @@
 package es.ucm.fdi.ici.c2223.practica1.grupo.pacman.launcher;
 
-import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.TimeObject;
-
 public class Timer {
 
 	private TimeObject timeObject;
@@ -10,8 +8,18 @@ public class Timer {
 		this.timeObject = timeObject;
 	}
 	
-	public void start() {
-		timeObject.activate();
+	public void start(final Long waitMillis) {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				timeObject.run();
+			}
+		}).start();
+		try {
+			Thread.sleep(waitMillis);
+		} catch (InterruptedException e) {
+			System.err.println("La espera del timer ha sido interrumpida.");
+		}
 		timeObject.stop();
 	}
 }

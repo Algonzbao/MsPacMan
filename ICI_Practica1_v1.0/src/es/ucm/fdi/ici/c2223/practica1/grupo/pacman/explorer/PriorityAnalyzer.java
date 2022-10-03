@@ -26,7 +26,7 @@ public class PriorityAnalyzer {
 		}
 	}
 	
-	/* Necesitamos una mejor poda:
+	/* TODO Necesitamos podar para:
 	- Aproximarse a PowerPills (para Pacman)
 	- Cortar caminos a Pacman (para los Ghosts)
 	- Posición cuántica de ghosts

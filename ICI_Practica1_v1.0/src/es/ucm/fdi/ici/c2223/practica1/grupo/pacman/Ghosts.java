@@ -11,42 +11,31 @@ import pacman.controllers.GhostController;
 import pacman.game.Constants.GHOST;
 import pacman.game.Constants.MOVE;
 
-public class Ghosts extends GhostController implements TimeObject {
-
-	private Game game;
-	private Timer timer;
+public class Ghosts extends GhostController {
+	
+	private static final String TEAM_ID = "09";
 	private Launcher launcher;
-	private EnumMap<GHOST, MOVE> moves;
+	private Timer timer;
+	
+	public Ghosts() {
+		super();
+		setName("Ghosts" + TEAM_ID);
+		setTeam("Team" + TEAM_ID);
+	}
 	
 	@Override
 	public EnumMap<GHOST, MOVE> getMove(Game game, long timeDue) {
-		this.game = game;
-		if (timer != null)
-			timer = new Timer(this);
-		timer.start();
-		return moves;
-	}
-	
-	public void activate() {
-		if (launcher != null)
+		if (timer != null) {
 			launcher = new Launcher(game);
-		launcher.run();
+			timer = new Timer(new Launcher(game));
+		}
+		timer.start(timeDue - System.currentTimeMillis());
 		EnumMap<GHOST, MOVE> moves = new EnumMap<GHOST, MOVE>(GHOST.class);
 		for (Agente a : Agente.values()) {
 			GHOST g = a.getGhost();
 			if (g != null)
 				moves.put(g, launcher.getNextMove(a));
 		}
-	}
-
-	@Override
-	public void stop() {
-		launcher.stop();
-		this.moves = new EnumMap<GHOST, MOVE>(GHOST.class);
-		for (Agente a : Agente.values()) {
-			GHOST g = a.getGhost();
-			if (g != null)
-				moves.put(g, launcher.getNextMove(a));
-		}
+		return moves;
 	}
 }
