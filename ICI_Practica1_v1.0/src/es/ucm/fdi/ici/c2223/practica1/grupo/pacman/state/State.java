@@ -2,6 +2,7 @@
  * Clase creada para hecer el merge entre AndresState y AlexState.
  */
 
+// Position getPosition(Agente a)
 package es.ucm.fdi.ici.c2223.practica1.grupo.pacman.state;
 
 import java.util.ArrayList;

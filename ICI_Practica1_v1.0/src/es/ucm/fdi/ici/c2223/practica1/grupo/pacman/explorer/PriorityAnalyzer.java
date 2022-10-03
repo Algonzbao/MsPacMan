@@ -32,7 +32,7 @@ public class PriorityAnalyzer {
 	- Posición cuántica de ghosts
 	- Rutas entre PowerPills
 	- Localización de ciclos
-	- Equelibremos los hijos aún explorando más del más
+	- Equilibremos los hijos. Aún así hay que explor más el árbol
 	promotedor (escalera de exploración en el árbol).
 	*/
 	private void priorizate(ArbolAlphaBeta aab) {
