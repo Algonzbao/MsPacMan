@@ -5,18 +5,18 @@ import java.util.List;
 
 public class Camino {
 
-	private Integer idCamino;
+	private Integer id;
 	private Integer distance;
 	private List<Camino> nextCaminos;
 	
-	Camino(Integer idCamino, Integer distance) {
-		this.idCamino = idCamino;
+	Camino(Integer id, Integer distance) {
+		this.id = id;
 		this.distance = distance;
 		this.nextCaminos = new ArrayList<>();
 	}
 	
-	Integer getIdCamino() {
-		return this.idCamino;
+	public Integer getId() {
+		return this.id;
 	}
 	Integer getDistance() {
 		return this.distance;
@@ -24,7 +24,10 @@ public class Camino {
 	void addCamino(Camino c) {
 		nextCaminos.add(c);
 	}
-	List<Camino> nextCaminos() {
+	public List<Camino> getNextCaminos() {
 		return nextCaminos;
+	}
+	public Integer getNumNextCaminos() {
+		return nextCaminos.size();
 	}
 }

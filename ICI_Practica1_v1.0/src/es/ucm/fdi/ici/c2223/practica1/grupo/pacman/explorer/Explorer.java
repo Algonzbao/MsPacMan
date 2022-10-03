@@ -38,46 +38,52 @@ public class Explorer {
 		public ArbolExploracion getRight() {
 			return right;
 		}
-		
 	}
 	
-	private Map<Integer, Boolean> camMap;
+	private Map<Integer, Boolean> exploredPaths;
 	
-	Explorer() {
-		camMap = new HashMap<Integer, Boolean>();
+	public Explorer() {
+		this.exploredPaths = new HashMap<Integer, Boolean>();
 	}
 	
-	ArbolExploracion explorar(Camino cam) {
-		ArbolExploracion ae = new ArbolExploracion(cam);
-		ArbolExploracion act;
+	// Esto es un recorrido en profundidad, ¡no en anchura!.
+	public ArbolExploracion explorar(Camino camino) {
+		ArbolExploracion ae = new ArbolExploracion(camino);
 		Integer count = 0;
-		for (Camino ca : cam.nextCaminos()) {
+		for (Camino c : camino.getNextCaminos()) {
 			count++;
-			if (!isExplored(ca)) {
-				camMap.put(cam.getIdCamino(), true);
-				act = explorar(ca);
+			if (!isExplored(c)) {
+				exploredPaths.put(camino.getId(), true);
+				ArbolExploracion son = explorar(c);
 				switch (count) {
 				case 1 :
-					ae.setLeft(act);
+					ae.setLeft(son);
 					break;
 				case 2 :
-					ae.setCenter(act);
+					ae.setCenter(son);
 					break;
 				default :
-					ae.setRight(act);
+					ae.setRight(son);
 				}
 			}
 		}
 		return ae;
 	}
 	
-	/*
-	private boolean isAllExplored() {
-		return State.getInstance().getNumCaminos() == exploredCaminos;
-	}
-	*/
+	/* ALTERNATIVE IMPLEMENTATION
+	 * Esto es un recorrido en profundidad, ¡no en anchura!.
+	public ArbolExploracion explorar(Camino camino) {
+		ArbolExploracion ae = new ArbolExploracion(camino);
+		for (Camino c : camino.getNextCaminos()) {
+			if (!isExplored(c)) {
+				ArbolExploracion son = explorar(c);
+				ae.addSon(son);
+			}
+		}
+		return ae;
+	} */
 	
-	private boolean isExplored(Camino cam) {
-		return camMap.containsKey(cam.getIdCamino());
+	private boolean isExplored(Camino camino) {
+		return this.exploredPaths.containsKey(camino.getId());
 	}
 }
