@@ -1,11 +1,6 @@
-/*
- * Clase creada para hecer el merge entre AndresState y AlexState.
- */
-
 package es.ucm.fdi.ici.c2223.practica1.grupo.pacman.state;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,22 +36,33 @@ public class State {
 	public Game getGame() {
 		return game;
 	}
+
+
 	public List<Camino> getMaze() {
 		return maze;
 	}
+
+
 	public Position getPacman() {
 		return pacman;
 	}
+
+
 	public List<Position> getGhosts() {
 		return ghosts;
 	}
+
+
 	public List<Douposition> getPills() {
 		return pills;
 	}
+
+
 	public List<Douposition> getPowerPills() {
 		return powerPills;
 	}
-	
+
+
 	private void updateAgentsPosition() {
 		this.game.getPacmanCurrentNodeIndex()
 		agentsPosition.put(Agente.PACMAN, this.game.getPacmanCurrentNodeIndex());
@@ -74,31 +80,30 @@ public class State {
 	}
 	
 	public final Maze getMaze(Game game) {
-		//this.maze = game.getCurrentMaze();
 		return game.getCurrentMaze();
+		
 	}
-	public void getPills(Game game, Camino camino) {
-		int[] data = game.getActivePillsIndices();
-		for(int i = 0; i < game.getActivePillsIndices().length; i++) {
-			pillPos.put(camino, data[i]);
+	public void getPills(Game game, Maze maze) {
+		for(Integer i = 0;i < game.getNumberOfActivePills(); i++) {
+		Integer eachPillPos = game.getPillIndex(i);
+		pillPos.add(eachPillPos);
 		}
+		
 	}
-	public void getPowerPills(Game game, Camino camino) {
-		int[] data = game.getActivePowerPillsIndices();
-		for(int i = 0; i < game.getActivePowerPillsIndices().length; i++) {
-			powerPillPos.setFirst(camino);
-			powerPillPos.setSecond(data[i]);
+	public void getPowerPills(Game game, Maze maze) {
+		for(Integer i = 0;i < game.getNumberOfActivePowerPills(); i++) {
+		Integer eachPowerPillPos = game.getPowerPillIndex(i);
+		powerPillPos.add(eachPowerPillPos);
 		}
 	}
 	public void getPMPosition(Game game) {
 		pacmanPos = game.getPacmanCurrentNodeIndex();
 	}
-	
 	public void getGhostsPosition(Game game) {
-		ArrayList<Integer> eachGhostPos = new ArrayList<>();
-		for (GHOST ghostType : GHOST.values()) {
-			eachGhostPos.add(game.getGhostCurrentNodeIndex(ghostType));
-		}
+		for(Integer i = 0;i < game.getnu(); i++) {
+			Integer eachPowerPillPos = game.getPowerPillIndex(i);
+			powerPillPos.add(eachPowerPillPos);
+			}
 	}
 	
 	public Position getPosition(Agente a) {
