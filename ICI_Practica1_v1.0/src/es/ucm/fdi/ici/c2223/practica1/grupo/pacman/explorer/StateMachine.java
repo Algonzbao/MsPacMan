@@ -60,12 +60,13 @@ public class StateMachine {
 			if (pacPos.getCamino() == ghPos.getCamino().invert())
 				return Integer.MIN_VALUE;
 		}
+		
 		Integer pacToNodeDistance = pacPos.getCamino().getDistance() - pacPos.getPlace();
 		Integer pacEndNode = pacPos.getCamino().getEndNode();
 		for (Position ghPos : ghosts) {
 			Integer ghostToNodeDistance = ghPos.getCamino().getDistance() - ghPos.getPlace();
 			Integer ghEndNode = ghPos.getCamino().getEndNode();
-			if (ghostToNodeDistance + maze.getDistance(ghEndNode, pacEndNode) < pacToNodeDistance)
+			if (ghostToNodeDistance + maze.getDistance(ghEndNode, pacEndNode) <= pacToNodeDistance)
 				return Integer.MIN_VALUE;
 		}
 		return pacPos.getCamino().getPoints();
