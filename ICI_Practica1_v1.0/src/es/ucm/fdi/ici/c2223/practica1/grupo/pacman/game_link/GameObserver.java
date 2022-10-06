@@ -28,17 +28,22 @@ public class GameObserver {
 		this.game = game;
 	}
 	
-	public void execute() {
+	public State execute() {
 		if (maze == game.getCurrentMaze())
-			update();
+			return update();
 		maze = game.getCurrentMaze();
+		initLabyrinth();
+		return getActualState();
 	}
 	public State getActualState() {
-		tryInitState();
+		// Falta
 		return null;
 	}
 	
-	private void update() {}
+	private State update() {
+		// Falta
+		return null;
+	}
 	
 	public Labyrinth initLabyrinth() {
 		List<Camino> caminos = new ArrayList<>();
@@ -57,20 +62,24 @@ public class GameObserver {
 			waitList.remove(0);
 			if (!explored.get(junctionNode.nodeIndex)) {
 				explored.set(junctionNode.nodeIndex, true);
-				Junction startJunction = new Junction(JunctionIdentifier.getInstance().newJunction());
+				// Junction startJunction = new Junction(JunctionIdentifier.getInstance().newJunction());
 				for (MOVE move1 : MOVE.values()) {
 					if (junctionNode.neighbourhood.containsKey(move1)) {
 						if (!explored.get(junctionNode.neighbourhood.get(move1))) {
 							Node nextNode = maze.graph[junctionNode.neighbourhood.get(move1)];
 							Node lastNode = junctionNode;
 							// public Camino(Integer id, Junction startJunction)
-							Camino actCamino = new Camino(CaminoIdentifier.getInstance().newCamino(), startJunction);
-							Integer place = 1;
+							Integer idCamino = CaminoIdentifier.getInstance().newCamino();
+							Integer startJunction = junctionNode.nodeIndex;
+							Integer endJunction;
+							Integer distanceCamino = 0;
+							Integer pillsCamino = 0;
+							Integer powerPillPlaceCamino = 0;
 							while (nextNode.numNeighbouringNodes <= 2) {
 								if (nextNode.pillIndex != -1)
-									actCamino.addPill();
+									pillsCamino++;
 								if (nextNode.powerPillIndex != -1)
-									actCamino.addPowerPill(place);
+									powerPillPlaceCamino = distanceCamino + 1;
 								for (MOVE move2 : MOVE.values()) {
 									if (nextNode.neighbourhood.containsKey(move2)) {
 										Integer tmpNodeIndex = nextNode.neighbourhood.get(move2);
@@ -81,11 +90,12 @@ public class GameObserver {
 										}
 									}
 								}
-								place++;
+								distanceCamino++;
 							}
+							endJunction = nextNode.nodeIndex;
 							explored.set(lastNode.nodeIndex, true);
 							waitList.add(nextNode);
-							caminos.add(actCamino);
+							caminos.add(new Camino(idCamino, distanceCamino, pillsCamino, powerPillPlaceCamino, startJunction, endJunction));
 						}
 					}
 				}

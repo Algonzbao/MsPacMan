@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Camino {
 
-	private Integer startNode;
-	private Integer endNode;
+	private Integer startJunction;
+	private Integer endJunction;
 	private Integer id;
 	private Integer distance;
 	private Integer pills;
@@ -14,15 +14,11 @@ public class Camino {
 	private List<Camino> nextCaminos;
 	private Camino invert;
 	
-<<<<<<< Updated upstream
-	Camino(Integer id, Integer distance, Integer pills, Integer pPillPos, Integer startNode, Integer endNode) {
-		//numero de pills = distance
-		//saber si tiene pPill = 0 no tiene 1 al principio y n la posicion en la que esta si es n+1 es posicion corrupta
-=======
-	public Camino(Integer id, Integer distance, Integer startNode, Integer endNode) {
->>>>>>> Stashed changes
-		this.startNode = startNode;
-		this.endNode = endNode;
+	//numero de pills = distance
+	//saber si tiene pPill = 0 no tiene 1 al principio y n la posicion en la que esta si es n+1 es posicion corrupta
+	public Camino(Integer id, Integer distance, Integer pills, Integer pPillPos, Integer startJunction, Integer endJunction) {
+		this.startJunction = startJunction;
+		this.endJunction = endJunction;
 		this.id = id;
 		this.distance = distance;
 		this.pills = pills;
@@ -66,13 +62,12 @@ public class Camino {
 	public void setInvert(Camino invert) {
 		this.invert = invert;
 	}
-	public Integer getStartNode() {
-		return startNode;
+	public Integer getStartJunction() {
+		return startJunction;
 	}
-	public Integer getEndNode() {
-		return endNode;
+	public Integer getEndJunction() {
+		return endJunction;
 	}
-
 	public Integer getPoints() {
 		return null;
 	}
