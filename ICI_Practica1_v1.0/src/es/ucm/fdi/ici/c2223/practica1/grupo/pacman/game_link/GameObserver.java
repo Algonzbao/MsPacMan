@@ -7,13 +7,16 @@ import java.util.Map;
 import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.explorer.Action;
 import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.explorer.Agente;
 import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.state.Camino;
+import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.state.JunctionIdentifier;
 import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.state.State;
 import pacman.game.Game;
 import pacman.game.Constants.GHOST;
 import pacman.game.internal.Maze;
+import pacman.game.internal.Node;
 
 public class GameObserver {
 
+	private Maze maze;
 	private final Game game;
 	
 	public GameObserver(final Game game) {
@@ -21,7 +24,23 @@ public class GameObserver {
 	}
 	
 	public State getActualState() {
-		Maze maze = game.getCurrentMaze();
+		Maze actualMaze = game.getCurrentMaze();
+		if (maze == game.getCurrentMaze()) {
+			
+		}
+		else {
+			maze = game.getCurrentMaze();
+			for (Node node : maze.graph) {
+				if (node.numNeighbouringNodes > 2)
+					JunctionIdentifier.newJunction();
+			}
+		}
+		
+		maze.
+		
+		
+		
+		
 		// donde se guardan los caminos?
 		private final List<Camino> maze;
 		public void getPills(Game game, Camino camino) {
