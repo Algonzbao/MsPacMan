@@ -5,7 +5,7 @@ public class CaminoIdentifier {
 	private static CaminoIdentifier camIden;
 	private Integer numCaminos;
 	
-	static CaminoIdentifier getInstance() {
+	public static CaminoIdentifier getInstance() {
 		if (camIden == null)
 			camIden = new CaminoIdentifier();
 		return camIden;
@@ -15,7 +15,7 @@ public class CaminoIdentifier {
 		this.numCaminos = 0;
 	}
 	
-	Integer newCamino() {
+	public Integer newCamino() {
 		return this.numCaminos++;
 	}
 	Integer getNumCaminos() {

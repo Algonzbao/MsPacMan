@@ -14,9 +14,13 @@ public class Camino {
 	private List<Camino> nextCaminos;
 	private Camino invert;
 	
+<<<<<<< Updated upstream
 	Camino(Integer id, Integer distance, Integer pills, Integer pPillPos, Integer startNode, Integer endNode) {
 		//numero de pills = distance
 		//saber si tiene pPill = 0 no tiene 1 al principio y n la posicion en la que esta si es n+1 es posicion corrupta
+=======
+	public Camino(Integer id, Integer distance, Integer startNode, Integer endNode) {
+>>>>>>> Stashed changes
 		this.startNode = startNode;
 		this.endNode = endNode;
 		this.id = id;

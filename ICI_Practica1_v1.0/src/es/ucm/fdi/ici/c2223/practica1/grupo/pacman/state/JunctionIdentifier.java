@@ -5,7 +5,7 @@ public class JunctionIdentifier {
 	private static JunctionIdentifier junIden;
 	private Integer numJunctions;
 	
-	static JunctionIdentifier getInstance() {
+	public static JunctionIdentifier getInstance() {
 		if (junIden == null)
 			junIden = new JunctionIdentifier();
 		return junIden;

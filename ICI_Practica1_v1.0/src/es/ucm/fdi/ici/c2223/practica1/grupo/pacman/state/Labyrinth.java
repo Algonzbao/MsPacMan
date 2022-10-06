@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Maze {
+public class Labyrinth {
 
 	private List<Camino> caminos;
 	private List<List<Integer>> path;
@@ -17,8 +17,8 @@ public class Maze {
 	};
 	
 	
-	public Maze() {
-		caminos = new ArrayList<>();
+	public Labyrinth(List<Camino> caminos) {
+		this.caminos = caminos;
 	}
 	
 	private Integer id;
