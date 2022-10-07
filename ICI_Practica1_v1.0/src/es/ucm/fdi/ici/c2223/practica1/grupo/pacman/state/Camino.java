@@ -2,6 +2,7 @@ package es.ucm.fdi.ici.c2223.practica1.grupo.pacman.state;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Camino {
 
@@ -11,7 +12,8 @@ public class Camino {
 	private Integer distance;
 	private Integer pills;
 	private Integer pPillPos;
-	private List<Camino> nextCaminos;
+	private Map<Integer, Camino> nextCaminos;
+	//private List<Camino> nextCaminos;
 	private Camino invert;
 	
 	//numero de pills = distance
@@ -70,5 +72,9 @@ public class Camino {
 	}
 	public Integer getPoints() {
 		return null;
+	}
+
+	public Camino getNextCamino(Integer observeIndex) {
+		return nextCaminos.get(observeIndex);
 	}
 }

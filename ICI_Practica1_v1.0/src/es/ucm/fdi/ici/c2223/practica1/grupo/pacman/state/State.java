@@ -1,11 +1,13 @@
 package es.ucm.fdi.ici.c2223.practica1.grupo.pacman.state;
 
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.explorer.Agente;
 import pacman.game.Game;
+import pacman.game.Constants.MOVE;
 
 public class State {
 	
@@ -84,5 +86,26 @@ public class State {
 	}
 	public List<Douposition> getPowerPills() {
 		return powerPills;
+	}
+	private State copy() {
+		return new State(this.maze, this.agentes, this.pills, this.powerPills, this.game);
+	}
+	public State advance(Map<Agente, MOVE> transition) {
+		State state = this.copy();
+		Map<Agente, Position> agentes = new HashMap<>();
+		for (Agente a : Agente.values()) {
+			if (!state.getPosition(a).isInTheEnd()) {
+				Map<Agente, Position> newAgentes = agentes;
+				Position newPosition = newAgentes.get(a);
+				position.setPlace(position.getPlace()++);
+			} else {
+				Map<Agente, Position> agentes = state.getAgentes();
+				Position position = agentes.get(a);
+				Position newPosition;
+				Camino newCamino = position.getCamino().getNextCamino(transition.get(a));
+				newPosition = new Position(newCamino, 1);
+				agentes.remove(a);
+				agentes.put(a, newPosition);
+			}
 	}
 }
