@@ -15,6 +15,10 @@ public class Labyrinth {
 		{2, 3, 5}
 		
 	};
+	// TODO Falta por declarar
+	private static final Camino GHOST_INITIAL_CAMINO = null;
+	// TODO Falta por declarar
+	private static final Integer GHOST_INITIAL_PLACE = null;
 	
 	
 	public Labyrinth(List<Camino> caminos) {
@@ -25,6 +29,10 @@ public class Labyrinth {
 	private Integer distance;
 	private List<Camino> nextCaminos;
 	private Camino invert;
+	
+	Position createGhostInitialPosition() {
+		return new Position(GHOST_INITIAL_CAMINO, GHOST_INITIAL_PLACE);
+	}
 	
 	public void addCamino(Integer distance) {
 		Integer id = CaminoIdentifier.getInstance().newCamino();

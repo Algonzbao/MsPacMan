@@ -19,4 +19,13 @@ public class Position {
 	public boolean isInTheEnd() {
 		return camino.getDistance() == place;
 	}
+	
+	public void advance() {
+		place++;
+	}
+
+	// Campo 'state' necesario para la herencia de Jail
+	public Position copy(State state) {
+		return new Position(this.camino, this.place);
+	}
 }

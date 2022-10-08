@@ -1,11 +1,13 @@
 package es.ucm.fdi.ici.c2223.practica1.grupo.pacman.state;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
+
+import pacman.game.Constants.MOVE;
 
 public class Camino {
 
+	private boolean isInvert;
 	private Integer startJunction;
 	private Integer endJunction;
 	private Integer id;
@@ -13,6 +15,7 @@ public class Camino {
 	private Integer pills;
 	private Integer pPillPos;
 	private Map<Integer, Camino> nextCaminos;
+	private Map<MOVE, Camino> futureCaminos;
 	//private List<Camino> nextCaminos;
 	private Camino invert;
 	
@@ -25,7 +28,7 @@ public class Camino {
 		this.distance = distance;
 		this.pills = pills;
 		this.pPillPos = pPillPos;
-		this.nextCaminos = new ArrayList<>();
+		this.nextCaminos = new HashMap<>();
 	}
 	
 	public Integer getId() {
@@ -34,11 +37,11 @@ public class Camino {
 	public Integer getDistance() {
 		return this.distance;
 	}
-	void addCamino(Camino c) {
-		nextCaminos.add(c);
+	public void addCamino(Integer junctionId, Camino c) {
+		nextCaminos.put(junctionId, c);
 	}
-	public List<Camino> getNextCaminos() {
-		return nextCaminos;
+	public Map<MOVE, Camino> getFutureCaminos() {
+		return futureCaminos;
 	}
 	public Integer getNumNextCaminos() {
 		return nextCaminos.size();
@@ -76,5 +79,19 @@ public class Camino {
 
 	public Camino getNextCamino(Integer observeIndex) {
 		return nextCaminos.get(observeIndex);
+	}
+
+	public Camino getNextCamino(MOVE move) {
+		return futureCaminos.get(move);
+	}
+	public Camino getInvert() {
+		return invert;
+	}
+
+	public boolean isInvert() {
+		return isInvert;
+	}
+	public void setInvert(boolean isInvert) {
+		this.isInvert = isInvert;
 	}
 }
