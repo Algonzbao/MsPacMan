@@ -18,6 +18,6 @@ public class MsPacMan extends PacmanController {
 	
 	@Override
 	public MOVE getMove(Game game, long timeDue) {
-		return Calculator.getNextMove(Agente.PACMAN);
+		return ComportamientoPacman.getMove();
 	}
 }
