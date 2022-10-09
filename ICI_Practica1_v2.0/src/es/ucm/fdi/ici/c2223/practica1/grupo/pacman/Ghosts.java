@@ -27,7 +27,7 @@ public class Ghosts extends GhostController {
 	
 	@Override
 	public EnumMap<GHOST, MOVE> getMove(Game game, long timeDue) {
-		for (PacmanDirective d : GhostsDirectiveList.getDirectivas()) {
+		for (PacmanDirective d : GhostsDirectiveList.getDirectives()) {
 			EnumMap<GHOST, MOVE> moves = d.getMoves();
 			if (moves != null)
 				return moves;
