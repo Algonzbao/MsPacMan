@@ -1,4 +1,4 @@
-package es.ucm.fdi.ici.c2223.practica1.grupo.pacman.state;
+package es.ucm.fdi.ici.c2223.practica1.grupo.pacman.extra;
 
 import java.util.HashMap;
 import java.util.List;

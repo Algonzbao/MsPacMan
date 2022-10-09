@@ -1,10 +1,10 @@
-package es.ucm.fdi.ici.c2223.practica1.grupo.pacman.directivas;
+package es.ucm.fdi.ici.c2223.practica1.grupo.pacman.pacman_directives;
 
 import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.game_link.GameContainer;
 import pacman.game.Constants.DM;
 import pacman.game.Constants.MOVE;
 
-public class IrPowerPillProxima extends Directiva {
+public class IrPowerPillProxima extends PacmanDirective {
 
 	@Override
 	public MOVE getMove() {

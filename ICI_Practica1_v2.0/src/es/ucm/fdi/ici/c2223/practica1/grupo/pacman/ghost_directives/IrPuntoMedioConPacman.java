@@ -1,4 +1,4 @@
-package es.ucm.fdi.ici.c2223.practica1.grupo.pacman.directivas;
+package es.ucm.fdi.ici.c2223.practica1.grupo.pacman.ghost_directives;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,6 +8,10 @@ import pacman.game.Constants.DM;
 import pacman.game.Constants.GHOST;
 import pacman.game.Constants.MOVE;
 
+<<<<<<< Updated upstream:ICI_Practica1_v2.0/src/es/ucm/fdi/ici/c2223/practica1/grupo/pacman/directivas/IrPuntoMedioConPacman.java
+=======
+public class IrPuntoMedioConPacman extends GhostDirective {
+>>>>>>> Stashed changes:ICI_Practica1_v2.0/src/es/ucm/fdi/ici/c2223/practica1/grupo/pacman/ghost_directives/IrPuntoMedioConPacman.java
 
 public class IrPuntoMedioConPacman extends Directiva {
 	private final int GHOSTS_NUMBER = 4;

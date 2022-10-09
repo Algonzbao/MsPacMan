@@ -1,4 +1,4 @@
-package es.ucm.fdi.ici.c2223.practica1.grupo.pacman.calculate;
+package es.ucm.fdi.ici.c2223.practica1.grupo.pacman.extra;
 
 import java.util.ArrayList;
 import java.util.List;
