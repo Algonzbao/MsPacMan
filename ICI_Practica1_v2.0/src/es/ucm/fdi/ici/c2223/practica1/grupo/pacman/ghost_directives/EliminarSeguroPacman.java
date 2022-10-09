@@ -26,7 +26,6 @@ public class EliminarSeguroPacman extends GhostDirective {
 	}
 	public static Boolean isInTheWay(Integer fromIndex, Integer toIndex, Integer index) {
 		// lastNode FALTA
-		GameContainer.get().
 		if (GameContainer.get().isJunction(index))
 			return false;
 		Integer lastNode, actualNode, nextNode;

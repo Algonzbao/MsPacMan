@@ -13,8 +13,7 @@ import pacman.game.Constants.GHOST;
 import pacman.game.Constants.MOVE;
 
 public class EvitarPacmanG extends GroupDirective {
-
-	private Directive gd;
+	
 	@Override
 	public EnumMap<GHOST, MOVE> getMoves() {
 		EnumMap<GHOST, MOVE> moves = new EnumMap<GHOST,MOVE>(GHOST.class);

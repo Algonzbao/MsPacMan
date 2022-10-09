@@ -20,11 +20,6 @@ public class MsPacMan extends PacmanController {
 	
 	@Override
 	public MOVE getMove(Game game, long timeDue) {
-<<<<<<< Updated upstream
-		return ComportamientoPacman.getMove();
-	}
-}
-=======
 		GameContainer.set(game);
 		for (PacmanDirective d : PacmanDirectiveList.getDirectivas()) {
 			MOVE m = d.getMove();
@@ -34,4 +29,3 @@ public class MsPacMan extends PacmanController {
 		return new RandomMove().getMove();
 	}
 }
->>>>>>> Stashed changes
