@@ -10,6 +10,8 @@ public class EliminarSeguroPacman extends GhostDirective {
 
 	@Override
 	public MOVE getMove(GHOST ghost) {
+		if (GameContainer.get().isGhostEdible(ghost))
+			return null;
 		Integer index = GameContainer.get().getGhostCurrentNodeIndex(ghost);
 		MOVE lastMove = GameContainer.get().getGhostLastMoveMade(ghost);
 		MOVE pacmanLastMove = GameContainer.get().getPacmanLastMoveMade();

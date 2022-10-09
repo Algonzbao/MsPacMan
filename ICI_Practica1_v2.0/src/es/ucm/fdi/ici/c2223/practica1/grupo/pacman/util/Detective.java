@@ -43,8 +43,9 @@ public class Detective {
 			}
 			junctions[i] = actualNode;
 		}
+		// TODO Fallo de lógica pues no tiene porque ser así
 		if (lastMove == GameContainer.get().getNextMoveAwayFromTarget(junctions[0], junctions[1], DM.PATH))
 			return junctions[0];
-		return  junctions[1];
+		return junctions[1];
 	}
 }

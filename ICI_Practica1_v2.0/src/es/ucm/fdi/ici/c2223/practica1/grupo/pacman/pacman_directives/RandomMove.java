@@ -3,7 +3,7 @@ package es.ucm.fdi.ici.c2223.practica1.grupo.pacman.pacman_directives;
 import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.constants.MyRandom;
 import pacman.game.Constants.MOVE;
 
-public class RandomMove extends PacmanDirective {
+public class RandomMove implements Directive {
 	
 	@Override
 	public MOVE getMove() {
