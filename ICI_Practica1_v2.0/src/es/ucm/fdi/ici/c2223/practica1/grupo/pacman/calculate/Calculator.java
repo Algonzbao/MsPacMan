@@ -8,7 +8,15 @@ import pacman.game.Constants.MOVE;
 
 public class Calculator {
 
+	// 1. Fantasma distancia minima con Pacman
+	// 2. No se corte el camino de un fantasma con el de otro
+	
+	// 2.5 Si el fastams llega antes, que vaya
+	// 3. Calcular radio de influencia de PowerPill para que huya el fantasma o si esta fuera evita entrar
+	// 4. Si un fastamas es devil que huya
+	
 	public static MOVE getNextMove(Agente agente) {
+		
 		for (MOVE m : GameContainer.getPossibleMoves())) {
 			
 		}
