@@ -23,9 +23,11 @@ public class Position {
 	public void advance() {
 		place++;
 	}
-
 	// Campo 'state' necesario para la herencia de Jail
 	public Position copy(State state) {
 		return new Position(this.camino, this.place);
+	}
+	public Integer remainToEnd() {
+		return camino.getDistance() - place;
 	}
 }

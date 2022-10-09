@@ -29,4 +29,9 @@ public class Jail extends Position {
 	public Position copy(State state) {
 		return new Jail(state, this.remainJailTime, this.agente);
 	}
+	@Override
+	public Integer remainToEnd() {
+		Position ghostInitialPosition = Labyrinth.get().createGhostInitialPosition();
+		return remainJailTime + ghostInitialPosition.remainToEnd();
+	}
 }

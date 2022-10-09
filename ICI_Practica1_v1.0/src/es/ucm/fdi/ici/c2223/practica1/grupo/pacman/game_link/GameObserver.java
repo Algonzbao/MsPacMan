@@ -8,6 +8,7 @@ import java.util.Map;
 
 import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.explorer.Action;
 import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.explorer.Agente;
+import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.explorer.Transition;
 import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.state.Camino;
 import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.state.CaminoIdentifier;
 import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.state.Douposition;
@@ -23,29 +24,35 @@ import pacman.game.internal.Maze;
 import pacman.game.internal.Node;
 
 public class GameObserver {
+
+	public GameObserver() {}
 	
-	private final Game game;
-	private Maze maze;
-	
-	public GameObserver(final Game game) {
-		this.game = game;
-	}
-	
-	public State execute() {
-		if (maze == game.getCurrentMaze())
-			return update();
-		maze = game.getCurrentMaze();
-		initLabyrinth();
-		return getActualState();
-	}
 	public State getActualState() {
 		// Falta
 		return null;
 	}
+	public void getPills(Game game, Camino camino) {
+		int[] data = game.getActivePillsIndices();
+		for(int i = 0; i < game.getActivePillsIndices().length; i++) {
+			pillPos.put(camino, data[i]);
+		}
+	}
+	public void getPowerPills(Game game, Camino camino) {
+		int[] data = game.getActivePowerPillsIndices();
+		for(int i = 0; i < game.getActivePowerPillsIndices().length; i++) {
+			powerPillPos.setFirst(camino);
+			powerPillPos.setSecond(data[i]);
+		}
+	}
+	public void getPMPosition(Game game) {
+		pacmanPos = game.getPacmanCurrentNodeIndex();
+	}
 	
-	private State update() {
-		// Falta
-		return null;
+	public void getGhostsPosition(Game game) {
+		ArrayList<Integer> eachGhostPos = new ArrayList<>();
+		for (GHOST ghostType : GHOST.values()) {
+			eachGhostPos.add(game.getGhostCurrentNodeIndex(ghostType));
+		}
 	}
 	
 	public Labyrinth initLabyrinth() {
@@ -106,59 +113,8 @@ public class GameObserver {
 		}
 	}
 	
-		// donde se guardan los caminos?
-		// private final List<Camino> maze;
-		public void getPills(Game game, Camino camino) {
-			int[] data = game.getActivePillsIndices();
-			for(int i = 0; i < game.getActivePillsIndices().length; i++) {
-				pillPos.put(camino, data[i]);
-			}
-		}
-		public void getPowerPills(Game game, Camino camino) {
-			int[] data = game.getActivePowerPillsIndices();
-			for(int i = 0; i < game.getActivePowerPillsIndices().length; i++) {
-				powerPillPos.setFirst(camino);
-				powerPillPos.setSecond(data[i]);
-			}
-		}
-		public void getPMPosition(Game game) {
-			pacmanPos = game.getPacmanCurrentNodeIndex();
-		}
-		
-		public void getGhostsPosition(Game game) {
-			ArrayList<Integer> eachGhostPos = new ArrayList<>();
-			for (GHOST ghostType : GHOST.values()) {
-				eachGhostPos.add(game.getGhostCurrentNodeIndex(ghostType));
-			}
-		}
-	
-	/* Se deben almacenar la lista de transiciones con el fin de eliminar las líneas temporales
-	 * alternativas que no han sucedido */
-	public Map<Agente, MOVE> inferTransitions(final State state) {
-		Map<Agente, MOVE> transition = new HashMap<>();
-		Map<Agente, Camino> map = Mutation.whoInspect(state);
-		for (Agente a : map.keySet())
-			transition.put(a, getLastMove(a));
-		return transition;
-	}
-	//public State(List<Camino> maze, Map<Agente, Position> agentes, List<Douposition> pills, List<Douposition> powerPills, Game game)
 	public State advance(State oldState, Map<Agente, MOVE> transition) {
-		State state = State.copy(oldState);
-		Map<Agente, Position> agentes = new HashMap<>();
-		for (Agente a : Agente.values()) {
-			if (!state.getPosition(a).isInTheEnd()) {
-				Map<Agente, Position> agentes = state.getAgentes();
-				Position position = agentes.get(a);
-				position.setPlace(position.getPlace()++);
-			} else {
-				Map<Agente, Position> agentes = state.getAgentes();
-				Position position = agentes.get(a);
-				Position newPosition;
-				Camino newCamino = position.getCamino().getNextCamino(transition.get(a));
-				newPosition = new Position(newCamino, 1);
-				agentes.remove(a);
-				agentes.put(a, newPosition);
-			}
+		return oldState.getNext(transition);
 	}
 	/*
 	private Integer observeIndex(Agente a) {
@@ -180,16 +136,22 @@ public class GameObserver {
 	private MOVE getLastMove(Agente a) {
 		switch (a) {
 		case PACMAN :
-			return game.getPacmanLastMoveMade();
+			return GameContainer.get().getPacmanLastMoveMade();
 		case GHOST1 :
-			return game.getGhostLastMoveMade(GHOST.BLINKY);
+			return GameContainer.get().getGhostLastMoveMade(GHOST.BLINKY);
 		case GHOST2 :
-			return game.getGhostLastMoveMade(GHOST.INKY);
+			return GameContainer.get().getGhostLastMoveMade(GHOST.INKY);
 		case GHOST3 :
-			return game.getGhostLastMoveMade(GHOST.PINKY);
+			return GameContainer.get().getGhostLastMoveMade(GHOST.PINKY);
 		case GHOST4 :
-			return game.getGhostLastMoveMade(GHOST.SUE);
+			return GameContainer.get().getGhostLastMoveMade(GHOST.SUE);
 		}
 		return null;
+	}
+	public Transition getTransition() {
+		Map<Agente, MOVE> moves = new HashMap<>();
+		for (Agente a : Agente.values())
+			moves.put(a, getLastMove(a));
+		return new Transition(moves);
 	}
 }

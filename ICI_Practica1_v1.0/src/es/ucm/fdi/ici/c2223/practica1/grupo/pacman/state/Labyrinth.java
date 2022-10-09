@@ -6,6 +6,11 @@ import java.util.List;
 
 public class Labyrinth {
 
+	private static Labyrinth labyrinth;
+	public static Labyrinth get() {
+		return labyrinth;
+	}
+	
 	private List<Camino> caminos;
 	private List<List<Integer>> path;
 	private Integer numNodes;

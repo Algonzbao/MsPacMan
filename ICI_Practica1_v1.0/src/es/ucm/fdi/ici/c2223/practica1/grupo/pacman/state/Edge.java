@@ -82,4 +82,10 @@ public class Edge {
 	public Edge copy() {
 		return new Edge(powerPillPlace, numPills, pillIntervals);
 	}
+	public Integer getNumPills() {
+		return numPills;
+	}
+	public Boolean hasPowerPill() {
+		return powerPillPlace != 0;
+	}
 }

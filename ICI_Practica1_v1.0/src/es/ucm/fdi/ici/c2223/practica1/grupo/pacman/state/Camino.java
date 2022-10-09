@@ -7,13 +7,12 @@ import pacman.game.Constants.MOVE;
 
 public class Camino {
 
-	private boolean isInvert;
+	private Edge edge;
+	private Boolean isInvert;
 	private Integer startJunction;
 	private Integer endJunction;
 	private Integer id;
 	private Integer distance;
-	private Integer pills;
-	private Integer pPillPos;
 	private Map<Integer, Camino> nextCaminos;
 	private Map<MOVE, Camino> futureCaminos;
 	//private List<Camino> nextCaminos;
@@ -21,13 +20,11 @@ public class Camino {
 	
 	//numero de pills = distance
 	//saber si tiene pPill = 0 no tiene 1 al principio y n la posicion en la que esta si es n+1 es posicion corrupta
-	public Camino(Integer id, Integer distance, Integer pills, Integer pPillPos, Integer startJunction, Integer endJunction) {
+	public Camino(Integer id, Integer distance, Integer startJunction, Integer endJunction) {
 		this.startJunction = startJunction;
 		this.endJunction = endJunction;
 		this.id = id;
 		this.distance = distance;
-		this.pills = pills;
-		this.pPillPos = pPillPos;
 		this.nextCaminos = new HashMap<>();
 	}
 	
@@ -61,12 +58,6 @@ public class Camino {
 	public void setpPillPos(Integer pPillPos) {
 		this.pPillPos = pPillPos;
 	}
-	public Camino invert() {
-		return this.invert;
-	}
-	public void setInvert(Camino invert) {
-		this.invert = invert;
-	}
 	public Integer getStartJunction() {
 		return startJunction;
 	}
@@ -84,14 +75,24 @@ public class Camino {
 	public Camino getNextCamino(MOVE move) {
 		return futureCaminos.get(move);
 	}
+	
+	public void setInvert(Camino camino) {
+		this.invert = camino;
+	}
 	public Camino getInvert() {
 		return invert;
 	}
-
 	public boolean isInvert() {
 		return isInvert;
 	}
-	public void setInvert(boolean isInvert) {
+	public void beInvert(boolean isInvert) {
 		this.isInvert = isInvert;
+	}
+	
+	public Integer getNumPills() {
+		return this.edge.getNumPills();
+	}
+	public Boolean hasPowerPill() {
+		return this.edge.hasPowerPill();
 	}
 }
