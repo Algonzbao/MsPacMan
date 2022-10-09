@@ -2,13 +2,9 @@ package es.ucm.fdi.ici.c2223.practica1.grupo.pacman;
 
 import java.util.EnumMap;
 
-import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.constants.Agente;
-import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.extra.Calculator;
 import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.game_link.GameContainer;
-import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.group_directives.GhostsDirectiveList;
-import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.group_directives.RandomMoves;
-import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.pacman_directives.PacmanDirective;
-import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.pacman_directives.PacmanDirectiveList;
+import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.ghost_directives.GhostDirective;
+import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.ghost_directives.GhostDirectiveList;
 import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.pacman_directives.RandomMove;
 import pacman.controllers.GhostController;
 import pacman.game.Constants.GHOST;
@@ -27,11 +23,20 @@ public class Ghosts extends GhostController {
 	
 	@Override
 	public EnumMap<GHOST, MOVE> getMove(Game game, long timeDue) {
-		for (PacmanDirective d : GhostsDirectiveList.getDirectives()) {
-			EnumMap<GHOST, MOVE> moves = d.getMoves();
-			if (moves != null)
-				return moves;
+		EnumMap<GHOST, MOVE> moves = new EnumMap<GHOST,MOVE>(GHOST.class);
+		for (GHOST ghostType : GHOST.values()) {
+			if (GameContainer.get().doesGhostRequireAction(ghostType)) {
+				MOVE move = null;
+				for (GhostDirective d : GhostDirectiveList.getDirectivas()) {
+					move = d.getMove(ghostType);
+					if (move != null)
+						break;
+				}
+				if (move == null)
+					move = new RandomMove().getMove();
+				moves.put(ghostType, move);
+			}
 		}
-		return new RandomMoves().getMoves();
+		return moves;
 	}
 }

@@ -8,12 +8,14 @@ public class IrPowerPillProxima extends PacmanDirective {
 
 	@Override
 	public MOVE getMove() {
-		GameContainer.get().getApproximateNextMoveTowardsTarget(0, 0, getMove(), null);
 		MOVE lastMoveMade = GameContainer.get().getPacmanLastMoveMade();
 		int fromNodeIndex = GameContainer.get().getPacmanCurrentNodeIndex();
 		int toNodeIndex = 0;
 		int minDistance = Integer.MAX_VALUE;
-		for (int index :GameContainer.get().getActivePowerPillsIndices()) {
+		int[] powerPills = GameContainer.get().getActivePowerPillsIndices();
+		if (powerPills.length == 0)
+			return null;
+		for (int index : GameContainer.get().getActivePowerPillsIndices()) {
 			int distance = GameContainer.get().getShortestPathDistance(fromNodeIndex, index, lastMoveMade);
 			if (distance < minDistance) {
 				toNodeIndex = index;
@@ -21,7 +23,6 @@ public class IrPowerPillProxima extends PacmanDirective {
 			}
 		}
 		DM distanceMeasure = DM.PATH;
-		return GameContainer.get().getApproximateNextMoveTowardsTarget(fromNodeIndex, toNodeIndex, getMove(), distanceMeasure);
+		return GameContainer.get().getApproximateNextMoveTowardsTarget(fromNodeIndex, toNodeIndex, lastMoveMade, distanceMeasure);
 	}
-
 }
