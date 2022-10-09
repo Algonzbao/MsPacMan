@@ -9,7 +9,6 @@ import pacman.game.Constants.GHOST;
 import pacman.game.Constants.MOVE;
 
 public class IrPuntoMedioConPacman extends GhostDirective {
-	private final int GHOSTS_NUMBER = 4;
 	@Override
 	public MOVE getMove(GHOST ghost) {
 		
