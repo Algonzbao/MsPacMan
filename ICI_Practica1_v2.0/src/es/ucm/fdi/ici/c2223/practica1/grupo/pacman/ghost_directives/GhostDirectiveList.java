@@ -3,9 +3,10 @@ package es.ucm.fdi.ici.c2223.practica1.grupo.pacman.ghost_directives;
 public class GhostDirectiveList {
 	
 	private static GhostDirective[] directivas = {
-		new EliminarSeguroPacman(),
+		// new EliminarSeguroPacman(),
 		// new EvitarPacman(),
-		new IrPuntoMedioConPacman()
+		new IrPuntoMedioConPacman(),
+		// new PerseguirPacman()
 	};
 	
 	public static GhostDirective[] getDirectivas() {

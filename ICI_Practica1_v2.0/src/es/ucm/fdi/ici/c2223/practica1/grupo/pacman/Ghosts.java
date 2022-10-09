@@ -1,6 +1,7 @@
 package es.ucm.fdi.ici.c2223.practica1.grupo.pacman;
 
 import java.util.EnumMap;
+import java.util.Map.Entry;
 
 import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.game_link.GameContainer;
 import es.ucm.fdi.ici.c2223.practica1.grupo.pacman.ghost_directives.GhostDirective;
@@ -35,6 +36,11 @@ public class Ghosts extends GhostController {
 				if (move == null)
 					move = new RandomMove().getMove();
 				moves.put(ghostType, move);
+			}
+		}
+		for (GHOST ghostType : GHOST.values()) {
+			if (GameContainer.get().doesGhostRequireAction(ghostType)) {
+				System.out.println(moves.get(ghostType).name());
 			}
 		}
 		return moves;
