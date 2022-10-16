@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="src" path="ICI_Practica1_v1.0/src"/>
-	<classpathentry kind="src" path="MsPackmanEngine/src/main/java"/>
-	<classpathentry kind="lib" path="MsPackmanEngine/lib/jFuzzyLogic.jar"/>
-	<classpathentry kind="lib" path="MsPackmanEngine/lib/jsr94.jar"/>
-	<classpathentry kind="output" path="ICI_Practica1_v1.0/bin"/>
-</classpath>
