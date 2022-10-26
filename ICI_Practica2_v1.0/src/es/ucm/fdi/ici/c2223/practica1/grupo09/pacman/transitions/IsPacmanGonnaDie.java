@@ -23,7 +23,7 @@ public class IsPacmanGonnaDie implements Transition {
 	private Boolean isGonnaDieInHisActualWay(MyInput in) {
 		Node powerPillInTheWay = in.getPPByWay(in.getPacmanWay());
 		// Means if a power pills exists in the way
-		if (powerPillInTheWay == null) {
+		if (powerPillInTheWay != null) {
 			Double pacmanToPPDistance = in.getDistancePacmanToNode(powerPillInTheWay);
 			for (GHOST ghost : GHOST.values()) {
 				Double ghostToPPDistance = in.getDistanceGhostToNode(ghost, powerPillInTheWay);
